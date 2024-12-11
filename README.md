@@ -1,37 +1,119 @@
-## Welcome to GitHub Pages
+Data-analyst-vinuthna
+Portfolio Part 1
+Project Title: “Data Analytics for the City of Vancouver: Unlocking Urban Insights Using AWS Cloud Solutions”
 
-You can use the [editor on GitHub](https://github.com/saikrishna1604/sk.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+Objective The aim is to design and implement a Data Analytics Platform (DAP) to analyze and visualize the geographic distribution of VAHEF (Vancouver Affordable Housing Endowment Fund) properties. Specifically, this work focuses on:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Identifying the count of properties in each neighborhood (Geo Local Area). Highlighting regions with more than 15 properties. Visualizing property concentration to support decision-making for resource allocation.
 
-### Markdown
+Dataset
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1) Source: Dataset includes details on properties owned by VAHEF, such as: Building Number: Unique identifier for each property. Geo Local Area: Indicates the neighborhood where the property is located. Other attributes (omitted in this analysis for relevance).
 
-```markdown
-Syntax highlighted code block
+2) Data Characteristics: Complete dataset with no missing values (as identified in the profiling step). Focus on Building Number and Geo Local Area for the analysis.
 
-# Header 1
-## Header 2
-### Header 3
+Methodology The analysis was conducted in four systematic steps: data ingestion, profiling, cleaning, and pipeline design.
 
-- Bulleted
-- List
+image
 
-1. Numbered
-2. List
+Data Ingestion
+Objective: Load raw data into AWS S3 for centralized storage and future processing.
 
-**Bold** and _Italic_ and `Code` text
+Steps:
 
-[Link](url) and ![Image](src)
-```
+Created two S3 buckets:
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Raw Data Bucket: For unprocessed data.
 
-### Jekyll Themes
+Transformed Data Bucket: For cleaned and structured data.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/saikrishna1604/sk.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+image
 
-### Support or Contact
+Data Profiling
+Objective: Analyze the dataset to understand its structure and quality.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Steps:
+
+Used AWS Glue DataBrew to perform a profiling job.
+
+Verified the absence of missing or invalid data:
+
+100% data availability for all columns.
+
+Building Number uniquely identifies each property.
+
+Focused on understanding the Geo Local Area column for grouping properties.
+
+image
+
+Data Cleaning
+Objective: Remove irrelevant information and prepare the dataset for analysis.
+
+Steps: Dropped unnecessary columns, focusing solely on Building Number and Geo Local Area.
+
+Ensured no extra spaces, invalid characters, or outliers remained.
+
+Transferred the cleaned dataset into a “Data Cleaning” folder within the transformed S3 bucket.
+
+Created two output files:
+
+Parquet Format: Stored in the system folder for efficient processing.
+
+CSV Format: Stored in the user folder for accessibility.
+
+image
+
+Data Pipeline Design
+Objective: Automate data processing and prepare outputs for visualization and insights.
+
+Pipeline Workflow:
+
+Source: Connected the cleaned dataset to the pipeline.
+
+Transformation:
+
+Grouped properties by Geo Local Area.
+
+Counted the number of properties per area.
+
+Applied a filter to identify neighborhoods with more than 15 properties.
+
+Destination:
+
+Saved the results in the transformed data bucket under a special folder for “Owned Properties.”
+
+image
+
+Exploratory Analysis
+
+Objective: Provide deeper insights into the geographic distribution of VAHEF properties.
+
+Steps:
+
+Conducted a detailed analysis of the Geo Local Area column:
+
+Extracted area names by removing numbers and special characters.
+
+Focused on high-concentration areas like Downtown, Mount Pleasant, and Walter Harwick Street.
+
+Created visualizations to highlight areas with high property concentrations.
+
+Deliverable:
+
+Identified key regions with significant property ownership.
+
+image
+
+Deliverables
+
+Cleaned Dataset:
+
+CSV and Parquet formats with columns: Building Number, Geo Local Area, and property counts.
+
+image
+
+ETL Pipeline: Configured for automated data processing and updating with new datasets. image
+
+Visualization: Heatmaps or bar charts summarizing property distributions.
+
+Analysis Report: Summary of findings, including high-concentration neighborhoods and insights for resource optimization.
