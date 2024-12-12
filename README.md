@@ -44,10 +44,10 @@ Key insights from the profiling include:
 - **Missing Data:** Approximately 11% missing values in some columns.
 - **Key Columns for Analysis:** Type, Location, and Ownership.
 
-![Figure 2: Data Profiling Connection](https://raw.githubusercontent.com/username/repository/main/images/data_profiling_connection.png)  
+![Figure 2: Data Profiling Connection](Profile.png)  
 *Connection of the raw dataset in AWS DataBrew.*
 
-![Figure 3: Missing Values](https://raw.githubusercontent.com/username/repository/main/images/missing_values.png)  
+![Figure 3: Missing Values](missing_values.png)  
 *Analysis of missing values in the dataset.*
 
 ---
@@ -60,7 +60,7 @@ The cleaning phase involves:
   - `system-folder` (Parquet format)
   - `user-folder` (CSV format)
 
-![Figure 4: Cleaned Data](https://raw.githubusercontent.com/username/repository/main/images/cleaned_data.png)  
+![Figure 4: Cleaned Data](cleaned_data.png)  
 *Final cleaned dataset in AWS DataBrew.*
 
 ---
@@ -72,7 +72,7 @@ An **AWS Glue ETL pipeline** was built to:
   - Ownership distribution (Private, Government, Non-Profit).
   - Concentration of cultural spaces in each local area.
 
-![Figure 5: ETL Pipeline](https://raw.githubusercontent.com/username/repository/main/images/etl_pipeline.png)  
+![Figure 5: ETL Pipeline](etl.png)  
 *AWS Glue ETL pipeline for transformations.*
 
 ---
@@ -92,15 +92,15 @@ An **AWS Glue ETL pipeline** was built to:
 ### Deliverables
 1. **Ownership Distribution Analysis:**  
    Insights into ownership percentages (Private, Government, Non-Profit).  
-   ![Figure 7: Ownership Distribution](https://raw.githubusercontent.com/username/repository/main/images/ownership_distribution.png)  
+   ![Figure 7: Ownership Distribution](owner_dis,png)  
 
 2. **Local Area Analysis:**  
    Visualization of cultural spaces concentrated in each area.  
-   ![Figure 8: Local Area Analysis Output](https://raw.githubusercontent.com/username/repository/main/images/local_area_output.png)  
+   ![Figure 8: Local Area Analysis Output](local_area_ooutput.png)  
 
 3. **ETL Pipeline:**  
    Efficient and repeatable workflow for future datasets.  
-   ![Figure 9: ETL Pipeline Output](https://raw.githubusercontent.com/username/repository/main/images/etl_pipeline_output.png)  
+   ![Figure 9: ETL Pipeline Output](etl.png)  
 
 ---
 
