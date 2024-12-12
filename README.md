@@ -1,97 +1,77 @@
-# DAP
+# Data Quality Control
 
-##  Data Enriching
-To prepare the data for analysis, I followed these steps:
+## Project Description: Data Quality Control Initiative at ABC Enterprises
+This project focuses on implementing data quality control measures to ensure accurate, reliable, and actionable data for business insights. It leverages AWS tools like DynamoDB, S3, Glue, and Athena to achieve high standards of data governance and analytics.
 
-1. **Created a DynamoDB Database**  
-   - The database was scalable and flexible, capable of managing large volumes of data.
-2. **Exported Data to S3**  
-   - Exporting to S3 provided secure and cost-effective storage.
-   - Enabled direct analytics using AWS tools like Glue and Athena.
+---
+
+## Project Title:
+Data Quality Control Initiative City of vancouver
+
+---
+
+## Objective:
+To establish a robust data analytics platform that:
+1. Ensures data accuracy, consistency, and completeness.
+2. Provides actionable insights into cultural space distribution and ownership.
+3. Enables secure and reliable data storage, processing, and governance.
+
+---
+
+## Background:
+Inconsistent and incomplete datasets often lead to unreliable analysis and decision-making. This initiative addresses these challenges by implementing state-of-the-art data quality measures using AWS technologies.
+
+---
+
+## Scope:
+The project involves:
+1. Data ingestion, profiling, and cleaning.
+2. Implementation of encryption and versioning for data protection.
+3. Designing an ETL pipeline to process, transform, and validate datasets.
+4. Establishing observability using AWS CloudWatch for monitoring.
+
+---
+
+## Methodology:
+### 1. Data Enrichment
+- **DynamoDB Creation**: Data stored in DynamoDB for scalability and flexibility.  
+- **Export to S3**: Secure storage and direct integration with AWS analytics tools like Glue and Athena.
 
 ![Figure 1: Exports to S3 from DynamoDB](dynamo.png)  
-*Screenshot from AWS Console.*  
 
-![Figure 2: Exported Objects Output](objects.png)  
-*Screenshot from AWS Console.*  
+### 2. Data Protection
+- **AWS KMS Encryption**: Ensured confidentiality by encrypting sensitive data.  
+- **Bucket Versioning**: Implemented to safeguard against accidental overwrites or deletions.
 
-3. **AWS Glue Crawler**  
-   - Automatically inferred schema and populated the AWS Glue Data Catalog.
-   - Ensured the data was query-ready for further analysis.
+![Figure 2: Bucket Versioning](version.png)  
 
+### 3. Data Governance
+- **ETL Pipeline**: Built using AWS Glue to ensure data quality and organize processed data into designated folders.  
+- **Sensitive Data Detection**: Verified the dataset to ensure compliance with data protection standards.
 
-4. **Analyzed Data with AWS Athena**  
-   - SQL queries were executed directly on the data stored in S3.
-   - Ensured data integrity in terms of completeness, consistency, and uniqueness.
+![Figure 3: ETL Pipeline ](pipeline.png)  
 
-![Figure 4: SQL Query Execution in AWS Athena](anehna.png)  
-*Screenshot from AWS Console.*
+### 4. Data Observability
+- **CloudWatch Monitoring**: Created dashboards for key metrics, anomaly detection, and cost management.
 
----
-
-##  Data Protection
-
-### Encryption Techniques for Confidentiality
-1. **AWS Key Management Service (KMS)**  
-   - Created symmetric encryption keys for secure data encryption and decryption.
-   - Integrated with other AWS services to ensure end-to-end encryption.
-
-![Figure 5: Customer Managed Keys](keys.png)  
-*Screenshot from AWS Console.*
-
-2. **Bucket-Level Encryption**  
-   - Applied to ensure sensitive information is only accessible to authorized users.
-
-![Figure 6: Bucket-Level Encryption](encrypt.png)  
-*Screenshot from AWS Console.*
-
-3. **Status of Buckets**  
-   - Verified encryption status for all buckets.
-
-![Figure 7: Bucket Status](status_buckets.png)  
-*Screenshot from AWS Console.*
-
-### Integration by Means of Bucket Versioning
-- **Purpose:** Maintain multiple versions of objects in S3 to enhance reliability and prevent accidental data loss.  
-- **Benefits:**
-  1. Data Recovery
-  2. Audit Trail
-  3. Protection Against Errors
-
-![Figure 8: Enabling Bucket Versioning](version.png)  
-*Screenshot from AWS Console.*
+![Figure 4: CloudWatch Dashboard](cw.png)  
 
 ---
 
-## Data Governance
-
-1. **AWS Glue ETL Pipeline**  
-   - Ensured data quality by safeguarding sensitive information and organizing processed data.
-
-2. **Sensitive Data Detection**  
-   - Verified that no Personally Identifiable Information (PII) was present.
-
-![Figure 10: Detecting Sensitive Data](.png)  
-*Screenshot from AWS Console.*
-
-3. **Data Quality Evaluation**  
-   - Assessed columns for completeness and identified areas with square footage greater than 10,000.
-
-![Figure 11: Data Quality Pipeline](pipeline.png)  
-*Screenshot from AWS Console.*
+## Deliverables:
+1. Cleaned and validated datasets, ready for analysis.
+2. Data profiling reports highlighting data quality insights.
+3. ETL pipelines for repeatable data processing.
+4. Dashboards for real-time data observability and cost tracking.
 
 ---
 
-## Data Observability
+## Timeline:
+The project timeline is divided into the following phases:
+1. **Week 1-2**: Data ingestion and profiling.
+2. **Week 3-4**: Data cleaning and enrichment.
+3. **Week 5-6**: ETL pipeline design and implementation.
+4. **Week 7**: Data governance and observability setup.
+5. **Week 8**: Final review and deliverable submission.
 
-1. **Implemented AWS CloudWatch**  
-   - Monitored data health, quality, and flow.  
-   - Developed dashboards to track key metrics, detect anomalies, and manage costs.
 
-![Figure 12: CloudWatch Dashboard](cw.png)  
-*Screenshot from AWS Console.*
-
----
-
-## Conclusion
-This project successfully designed and implemented a robust Data Analytics Platform. The use of AWS services ensured efficient data storage, protection, governance, and observability, delivering high-quality insights and enabling decision-making.
