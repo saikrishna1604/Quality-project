@@ -23,7 +23,7 @@ The dataset includes cultural spaces, their type, location, and ownership detail
      - `cul-spc-trf-ven`: For transformed data with folders like data profiling, data cleaning, and data quality.
    - Uploaded the raw dataset to the storage bucket.
 
-   ![Figure 1: Storage Buckets](image-path-1)
+   ![Figure 1: Storage Buckets](storage.png)
    ![Figure 2: Raw Dataset](image-path-2)
    ![Figure 3: File Structure](image-path-3)
 
