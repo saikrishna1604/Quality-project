@@ -1,110 +1,99 @@
-# Project-1: Data Analytics Platform Design and Implementation
+# DAP Implementation (Individual Work) – Venkata Sai Krishna Bhimavarapu
 
-## Exploratory Data Analysis
+## Step 5: Data Enriching
+To prepare the data for analysis, I followed these steps:
 
-### Project Description
-This project focuses on designing and implementing a **Data Analytics Platform (DAP)** to analyze cultural spaces in various local areas. The primary goals include:
-- Identifying the number of cultural spaces in each local area.
-- Calculating the percentage of cultural spaces by ownership type:
-  - Privately Owned
-  - Government-Owned
-  - Non-Profit
+1. **Created a DynamoDB Database**  
+   - The database was scalable and flexible, capable of managing large volumes of data.
+2. **Exported Data to S3**  
+   - Exporting to S3 provided secure and cost-effective storage.
+   - Enabled direct analytics using AWS tools like Glue and Athena.
 
-The platform utilizes **AWS Services**, including **S3**, **Glue DataBrew**, and **Glue ETL**, to achieve efficient data storage, profiling, cleaning, and transformation.
+![Figure 1: Exports to S3 from DynamoDB](https://raw.githubusercontent.com/username/repository/main/images/exports_to_s3.png)  
+*Screenshot from AWS Console.*  
 
----
+![Figure 2: Exported Objects Output](https://raw.githubusercontent.com/username/repository/main/images/exported_objects_output.png)  
+*Screenshot from AWS Console.*  
 
-### Methodology
+3. **AWS Glue Crawler**  
+   - Automatically inferred schema and populated the AWS Glue Data Catalog.
+   - Ensured the data was query-ready for further analysis.
 
-#### **1. Data Ingestion**
-The first step involves uploading the dataset to AWS S3 buckets:
-- **Bucket 1:** `cul-spc-raw-ven` for storing raw data.
-- **Bucket 2:** `cul-spc-trf-ven` for storing transformed data, organized into subfolders like:
-  - `data-profiling`
-  - `data-cleaning`
-  - `data-quality`
 
-These structured buckets ensure proper data organization and accessibility.
+4. **Analyzed Data with AWS Athena**  
+   - SQL queries were executed directly on the data stored in S3.
+   - Ensured data integrity in terms of completeness, consistency, and uniqueness.
 
-![Figure 1: Storage Buckets](storage.png)  
-*Screenshot of storage buckets in AWS Console.*
+![Figure 4: SQL Query Execution in AWS Athena](https://raw.githubusercontent.com/username/repository/main/images/sql_query_execution.png)  
+*Screenshot from AWS Console.*
 
 ---
 
-#### **2. Data Profiling**
-AWS DataBrew simplifies profiling by:
-- Connecting directly to the raw dataset.
-- Running profiling jobs to identify:
-  - Missing values
-  - Correlations
-  - Invalid data
-  - Overall data quality
+## Step 6: Data Protection
 
-Key insights from the profiling include:
-- **Missing Data:** Approximately 11% missing values in some columns.
-- **Key Columns for Analysis:** Type, Location, and Ownership.
+### Encryption Techniques for Confidentiality
+1. **AWS Key Management Service (KMS)**  
+   - Created symmetric encryption keys for secure data encryption and decryption.
+   - Integrated with other AWS services to ensure end-to-end encryption.
 
-![Figure 2: Data Profiling Connection](Profile.png)  
-*Connection of the raw dataset in AWS DataBrew.*
+![Figure 5: Customer Managed Keys](https://raw.githubusercontent.com/username/repository/main/images/customer_managed_keys.png)  
+*Screenshot from AWS Console.*
 
-![Figure 3: Missing Values](missing_values.png)  
-*Analysis of missing values in the dataset.*
+2. **Bucket-Level Encryption**  
+   - Applied to ensure sensitive information is only accessible to authorized users.
 
----
+![Figure 6: Bucket-Level Encryption](https://raw.githubusercontent.com/username/repository/main/images/bucket_level_encryption.png)  
+*Screenshot from AWS Console.*
 
-#### **3. Data Cleaning**
-The cleaning phase involves:
-- Removing irrelevant columns while retaining critical data.
-- Addressing missing values (<1% in "Location" and "Ownership").
-- Organizing cleaned data into:
-  - `system-folder` (Parquet format)
-  - `user-folder` (CSV format)
+3. **Status of Buckets**  
+   - Verified encryption status for all buckets.
 
-![Figure 4: Cleaned Data](cleaned_data.png)  
-*Final cleaned dataset in AWS DataBrew.*
+![Figure 7: Bucket Status](https://raw.githubusercontent.com/username/repository/main/images/bucket_status.png)  
+*Screenshot from AWS Console.*
 
----
+### Integration by Means of Bucket Versioning
+- **Purpose:** Maintain multiple versions of objects in S3 to enhance reliability and prevent accidental data loss.  
+- **Benefits:**
+  1. Data Recovery
+  2. Audit Trail
+  3. Protection Against Errors
 
-#### **4. Data Pipeline Design**
-An **AWS Glue ETL pipeline** was built to:
-- Transform the cleaned dataset.
-- Group data by location and analyze:
-  - Ownership distribution (Private, Government, Non-Profit).
-  - Concentration of cultural spaces in each local area.
-
-![Figure 5: ETL Pipeline](etl.png)  
-*AWS Glue ETL pipeline for transformations.*
+![Figure 8: Enabling Bucket Versioning](https://raw.githubusercontent.com/username/repository/main/images/bucket_versioning.png)  
+*Screenshot from AWS Console.*
 
 ---
 
-### Tools and Technologies
-- **AWS Services:**
-  - S3: For data storage.
-  - Glue DataBrew: For data profiling and cleaning.
-  - Glue ETL: For data transformation.
-- **Programming Language:**
-  - SQL: For querying datasets.
-- **Others:**
-  - AWS Console for management and visualization.
+## Step 7: Data Governance
+
+1. **AWS Glue ETL Pipeline**  
+   - Ensured data quality by safeguarding sensitive information and organizing processed data.
+
+2. **Sensitive Data Detection**  
+   - Verified that no Personally Identifiable Information (PII) was present.
+
+![Figure 10: Detecting Sensitive Data](https://raw.githubusercontent.com/username/repository/main/images/sensitive_data_detection.png)  
+*Screenshot from AWS Console.*
+
+3. **Data Quality Evaluation**  
+   - Assessed columns for completeness and identified areas with square footage greater than 10,000.
+
+![Figure 11: Data Quality Pipeline](https://raw.githubusercontent.com/username/repository/main/images/data_quality_pipeline.png)  
+*Screenshot from AWS Console.*
 
 ---
 
-### Deliverables
-1. **Ownership Distribution Analysis:**  
-   Insights into ownership percentages (Private, Government, Non-Profit).  
-   ![Figure 7: Ownership Distribution](owner_dis,png)  
+## Step 8: Data Observability
 
-2. **Local Area Analysis:**  
-   Visualization of cultural spaces concentrated in each area.  
-   ![Figure 8: Local Area Analysis Output](local_area_ooutput.png)  
+1. **Implemented AWS CloudWatch**  
+   - Monitored data health, quality, and flow.  
+   - Developed dashboards to track key metrics, detect anomalies, and manage costs.
 
-3. **ETL Pipeline:**  
-   Efficient and repeatable workflow for future datasets.  
-   ![Figure 9: ETL Pipeline Output](etl.png)  
+![Figure 12: CloudWatch Dashboard](https://raw.githubusercontent.com/username/repository/main/images/cloudwatch_dashboard.png)  
+*Screenshot from AWS Console.*
 
 ---
 
-### Conclusion
-This Data Analytics Platform efficiently manages cultural space data, providing actionable insights into ownership and geographic distribution. The modular design and use of AWS services ensure scalability, reliability, and performance for future analyses.
+## Conclusion
+This project successfully designed and implemented a robust Data Analytics Platform. The use of AWS services ensured efficient data storage, protection, governance, and observability, delivering high-quality insights and enabling decision-making.
 
----
+**Note:** Replace the placeholders `https://raw.githubusercontent.com/username/repository/main/images/image_name.png` with the actual URLs of your uploaded images.
