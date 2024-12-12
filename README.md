@@ -26,7 +26,7 @@ The first step involves uploading the dataset to AWS S3 buckets:
 
 These structured buckets ensure proper data organization and accessibility.
 
-![Figure 1: Storage Buckets](https://raw.githubusercontent.com/username/repository/main/images/storage_buckets.png)  
+![Figure 1: Storage Buckets](storage.png)  
 *Screenshot of storage buckets in AWS Console.*
 
 ---
@@ -74,9 +74,6 @@ An **AWS Glue ETL pipeline** was built to:
 
 ![Figure 5: ETL Pipeline](https://raw.githubusercontent.com/username/repository/main/images/etl_pipeline.png)  
 *AWS Glue ETL pipeline for transformations.*
-
-![Figure 6: Local Area Analysis](https://raw.githubusercontent.com/username/repository/main/images/local_area_analysis.png)  
-*Analysis of cultural spaces by local area.*
 
 ---
 
