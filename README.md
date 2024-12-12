@@ -1,71 +1,113 @@
-# Project-1
+# Project-1: Data Analytics Platform Design and Implementation
 
 ## Exploratory Data Analysis
 
 ### Project Description
-**Project Title**  
-DAP Design and Implementation (Individual Work - Venkata Sai Krishna Bhimavarapu)  
+This project focuses on designing and implementing a **Data Analytics Platform (DAP)** to analyze cultural spaces in various local areas. The primary goals include:
+- Identifying the number of cultural spaces in each local area.
+- Calculating the percentage of cultural spaces by ownership type:
+  - Privately Owned
+  - Government-Owned
+  - Non-Profit
 
-**Objective**  
-The main aim of this project is to design and implement a Data Analytics Platform to determine:  
-- How many cultural spaces exist in each local area.  
-- The percentage of cultural spaces privately owned, government-owned, or operated by non-profits.  
+The platform utilizes **AWS Services**, including **S3**, **Glue DataBrew**, and **Glue ETL**, to achieve efficient data storage, profiling, cleaning, and transformation.
 
-The project utilizes an AWS S3 bucket to store the raw dataset, AWS Glue DataBrew for profiling and cleaning the data, and AWS Glue to build and manage the ETL pipeline.  
-
-**Dataset**  
-The dataset includes cultural spaces, their type, location, and ownership details.  
+---
 
 ### Methodology
-1. **Data Ingestion**  
-   - Created two separate buckets:
-     - `cul-spc-raw-ven`: For raw data.
-     - `cul-spc-trf-ven`: For transformed data with folders like data profiling, data cleaning, and data quality.
-   - Uploaded the raw dataset to the storage bucket.
 
-   ![Figure 1: Storage Buckets](storage.png)
-   ![Figure 2: Raw Dataset](image-path-2)
-   ![Figure 3: File Structure](image-path-3)
+#### **1. Data Ingestion**
+The first step involves uploading the dataset to AWS S3 buckets:
+- **Bucket 1:** `cul-spc-raw-ven` for storing raw data.
+- **Bucket 2:** `cul-spc-trf-ven` for storing transformed data, organized into subfolders like:
+  - `data-profiling`
+  - `data-cleaning`
+  - `data-quality`
 
-2. **Data Profiling**  
-   - Used AWS DataBrew to connect the raw dataset and create a profiling job.
-   - Analyzed the dataset for missing values, correlations, and data quality issues.
+These structured buckets ensure proper data organization and accessibility.
 
-   ![Figure 4: AWS DataBrew Connection](image-path-4)
-   ![Figure 5: Job Created](image-path-5)
-   ![Figure 6: Correlation Analysis](image-path-6)
-   ![Figure 7: Missing Values](image-path-7)
-   ![Figure 8: Required Columns](image-path-8)
+![Figure 1: Storage Buckets](https://raw.githubusercontent.com/username/repository/main/images/storage_buckets.png)  
+*Screenshot of storage buckets in AWS Console.*
 
-3. **Data Cleaning**  
-   - Removed irrelevant columns while retaining useful ones.
-   - Created structured cleaning projects and routed cleaned data to appropriate folders.
+---
 
-   ![Figure 9: Project Created](image-path-9)
-   ![Figure 10: Cleaned Data](image-path-10)
-   ![Figure 11: Recipe of Dataset](image-path-11)
-   ![Figure 12: Recipe Details](image-path-12)
-   ![Figure 13: Final Outputs](image-path-13)
-   ![Figure 14: Output 1](image-path-14)
-   ![Figure 15: Output 2](image-path-15)
+#### **2. Data Profiling**
+AWS DataBrew simplifies profiling by:
+- Connecting directly to the raw dataset.
+- Running profiling jobs to identify:
+  - Missing values
+  - Correlations
+  - Invalid data
+  - Overall data quality
 
-4. **Data Pipeline Design**  
-   - Built an AWS Glue ETL pipeline for transformations.
-   - Removed unnecessary columns and grouped data by location to analyze ownership distribution.
+Key insights from the profiling include:
+- **Missing Data:** Approximately 11% missing values in some columns.
+- **Key Columns for Analysis:** Type, Location, and Ownership.
 
-   ![Figure 16: ETL Pipeline](image-path-16)
-   ![Figure 17: Local Area Analysis](image-path-17)
-   ![Figure 18: Ownership Distribution Pipeline](image-path-18)
+![Figure 2: Data Profiling Connection](https://raw.githubusercontent.com/username/repository/main/images/data_profiling_connection.png)  
+*Connection of the raw dataset in AWS DataBrew.*
+
+![Figure 3: Missing Values](https://raw.githubusercontent.com/username/repository/main/images/missing_values.png)  
+*Analysis of missing values in the dataset.*
+
+---
+
+#### **3. Data Cleaning**
+The cleaning phase involves:
+- Removing irrelevant columns while retaining critical data.
+- Addressing missing values (<1% in "Location" and "Ownership").
+- Organizing cleaned data into:
+  - `system-folder` (Parquet format)
+  - `user-folder` (CSV format)
+
+![Figure 4: Cleaned Data](https://raw.githubusercontent.com/username/repository/main/images/cleaned_data.png)  
+*Final cleaned dataset in AWS DataBrew.*
+
+---
+
+#### **4. Data Pipeline Design**
+An **AWS Glue ETL pipeline** was built to:
+- Transform the cleaned dataset.
+- Group data by location and analyze:
+  - Ownership distribution (Private, Government, Non-Profit).
+  - Concentration of cultural spaces in each local area.
+
+![Figure 5: ETL Pipeline](https://raw.githubusercontent.com/username/repository/main/images/etl_pipeline.png)  
+*AWS Glue ETL pipeline for transformations.*
+
+![Figure 6: Local Area Analysis](https://raw.githubusercontent.com/username/repository/main/images/local_area_analysis.png)  
+*Analysis of cultural spaces by local area.*
+
+---
 
 ### Tools and Technologies
-- **AWS Services**: S3, Glue, DataBrew, Glue ETL
-- **Programming Languages**: SQL
-- **Other Tools**: AWS Console
+- **AWS Services:**
+  - S3: For data storage.
+  - Glue DataBrew: For data profiling and cleaning.
+  - Glue ETL: For data transformation.
+- **Programming Language:**
+  - SQL: For querying datasets.
+- **Others:**
+  - AWS Console for management and visualization.
+
+---
 
 ### Deliverables
-1. Ownership Distribution: Percentage of cultural spaces by ownership type (Private, Government, Non-Profit).  
-   ![Figure 21: Ownership Distribution Output](image-path-21)  
-2. Local Area Analysis: Concentration of cultural spaces in each local area.  
-   ![Figure 20: Local Area Analysis Output](image-path-20)
-3. Final ETL Pipeline: Ensuring efficient and repeatable processing for future datasets.  
-   ![Figure 19: Descriptive ETL](image-path-19)
+1. **Ownership Distribution Analysis:**  
+   Insights into ownership percentages (Private, Government, Non-Profit).  
+   ![Figure 7: Ownership Distribution](https://raw.githubusercontent.com/username/repository/main/images/ownership_distribution.png)  
+
+2. **Local Area Analysis:**  
+   Visualization of cultural spaces concentrated in each area.  
+   ![Figure 8: Local Area Analysis Output](https://raw.githubusercontent.com/username/repository/main/images/local_area_output.png)  
+
+3. **ETL Pipeline:**  
+   Efficient and repeatable workflow for future datasets.  
+   ![Figure 9: ETL Pipeline Output](https://raw.githubusercontent.com/username/repository/main/images/etl_pipeline_output.png)  
+
+---
+
+### Conclusion
+This Data Analytics Platform efficiently manages cultural space data, providing actionable insights into ownership and geographic distribution. The modular design and use of AWS services ensure scalability, reliability, and performance for future analyses.
+
+---
