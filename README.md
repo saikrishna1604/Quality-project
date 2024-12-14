@@ -1,57 +1,69 @@
-# Data Quality Control
+# Data Quality Control  
 
-## Project Description: Data Quality Control Initiative at ABC Enterprises
-This project focuses on implementing data quality control measures to ensure accurate, reliable, and actionable data for business insights. It leverages AWS tools like DynamoDB, S3, Glue, and Athena to achieve high standards of data governance and analytics.
-
----
-
-## Project Title:
-Data Quality Control Initiative City of vancouver
+## Project Description:  
+This project focuses on implementing a comprehensive **Data Quality Control (DQC)** framework using the dataset containing public art installation details. The initiative aims to ensure data integrity by addressing key aspects such as sensitivity, accuracy, consistency, completeness, and reliability. By improving the quality of this dataset, we can enhance its usability and provide accurate insights for analysis and decision-making.
 
 ---
 
-## Objective:
-To establish a robust data analytics platform that:
-1. Ensures data accuracy, consistency, and completeness.
-2. Provides actionable insights into cultural space distribution and ownership.
-3. Enables secure and reliable data storage, processing, and governance.
+## Project Title:  
+Data Quality Evaluation and Control for Public Art Installations  
 
 ---
 
-## Background:
-Inconsistent and incomplete datasets often lead to unreliable analysis and decision-making. This initiative addresses these challenges by implementing state-of-the-art data quality measures using AWS technologies.
+## Objective:  
+To ensure the quality and reliability of the public art dataset by identifying sensitive data, evaluating its structure, and implementing data validation, profiling, and cleansing measures.  
 
 ---
 
-## Scope:
-The project involves:
-1. Data ingestion, profiling, and cleaning.
-2. Implementation of encryption and versioning for data protection.
-3. Designing an ETL pipeline to process, transform, and validate datasets.
-4. Establishing observability using AWS CloudWatch for monitoring.
+## Background:  
+The public art dataset includes information such as the title of the work, material used, neighborhood, and year of installation. While this dataset provides valuable insights, it contains inconsistencies, missing data, and possible inaccuracies. This project will establish a robust process for evaluating and improving the dataset's quality without being tied to an enterprise-specific implementation.
 
 ---
 
-## Methodology:
-### 1. Data Enrichment
-- **DynamoDB Creation**: Data stored in DynamoDB for scalability and flexibility.  
-- **Export to S3**: Secure storage and direct integration with AWS analytics tools like Glue and Athena.
+## Scope:  
+This project focuses on:  
+- **Data Profiling:** Assessing the quality of the dataset.  
+- **Data Sensitivity Analysis:** Identifying and securing sensitive information.  
+- **Data Cleansing:** Addressing inaccuracies and missing or duplicate values.  
+- **Validation Rules:** Establishing guidelines to ensure consistent and accurate data entry.  
 
-![Figure 1: Exports to S3 from DynamoDB](dynamo.png)  
+---
 
-### 2. Data Protection
-- **AWS KMS Encryption**: Ensured confidentiality by encrypting sensitive data.  
-- **Bucket Versioning**: Implemented to safeguard against accidental overwrites or deletions.
+## Methodology:  
+
+### **1. Current State Assessment**  
+- Analyze the dataset structure and identify existing data quality challenges.  
+- Pinpoint critical fields such as `Title of Work`, `Material Used`, and `Year of Installation` that impact analysis.
+  
+### **2. Data Profiling**  
+- Use profiling tools to evaluate the dataset's completeness, accuracy, and consistency.  
+- Identify sensitive fields and assess their potential impact on analysis and privacy compliance.  
 
 ![Figure 2: Bucket Versioning](version.png)  
 
-### 3. Data Governance
+### **3. Sensitivity Analysis**  
+- Implement methods to identify sensitive data fields that may require masking or secure storage.  
+- Document findings and recommendations for safeguarding sensitive data.  
+
+### **4. Data Cleansing Processes**  
+- Perform the following cleaning tasks:  
+  - Remove duplicate records.  
+  - Fill missing values with suitable imputations (e.g., "Unknown Material" for the `Material Used` field).  
+  - Standardize formats for key columns (e.g., consistent `Year` format).  
+
+### **5. Data Validation Rules**  
+- Set validation rules to ensure:  
+  - Data completeness (e.g., all records must have a `Title of Work`).  
+  - Consistency (e.g., the `Year of Installation` should not be a future year).  
+- Create guidelines for future data entries to minimize inaccuracies. 
+
+### 6. Data Governance
 - **ETL Pipeline**: Built using AWS Glue to ensure data quality and organize processed data into designated folders.  
 - **Sensitive Data Detection**: Verified the dataset to ensure compliance with data protection standards.
 
 ![Figure 3: ETL Pipeline ](pipeline.png)  
 
-### 4. Data Observability
+### 7. Data Observability
 - **CloudWatch Monitoring**: Created dashboards for key metrics, anomaly detection, and cost management.
 
 ![Figure 4: CloudWatch Dashboard](cw.png)  
